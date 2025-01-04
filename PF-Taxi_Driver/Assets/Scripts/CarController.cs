@@ -21,6 +21,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         playerRB = gameObject.GetComponent<Rigidbody>();
+        playerRB.centerOfMass = new Vector3(0, -0.5f, 0);
     }
 
     void Update()
