@@ -8,12 +8,14 @@ public class DestinationManager : MonoBehaviour
     public List<GameObject> destinations;
     private GameObject currentDestination;
     [SerializeField] GameObject destinationMark;
+
     private void OnEnable()
     {
         
     }
     private void Start()
     {
+
         GenerateDestinations();
         NewDestination();   
     }
@@ -27,7 +29,7 @@ public class DestinationManager : MonoBehaviour
         currentDestination = destinations[randomIndex];
         currentDestination.gameObject.SetActive(true);
         Instantiate(destinationMark, currentDestination.transform.position, Quaternion.identity);
-
+        Debug.Log("Destination determined");
     }
 
     void GenerateDestinations()
@@ -51,4 +53,8 @@ public class DestinationManager : MonoBehaviour
         //gameObject.SetActive(false);
         Debug.Log("Destination reached. Generating a new destination...");
     }
-}
+
+
+    
+
+    }

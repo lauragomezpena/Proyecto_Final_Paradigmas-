@@ -2,36 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
     [SerializeField] int startingLife =100;
-
     [SerializeField] int currentLife;
+    [SerializeField] Slider healthSlider;
     public int CurrentLife { get { return currentLife; } }
 
     //[SerializeField] TextMeshProUGUI displayBalance;
 
     void Awake()
     {
+        healthSlider.maxValue = startingLife;
+        healthSlider.value = currentLife;
         currentLife = startingLife;
         UpdateDisplay();
     }
 
-    public void Deposit(int amount)
+    public void IncreaseLife(int amount)
     {
         currentLife += Mathf.Abs(amount);
         UpdateDisplay();
     }
 
-    public void Withdraw(int amount)
+    public void DecreaseLife(int amount)
     {
         currentLife -= Mathf.Abs(amount);
         UpdateDisplay();
 
         if (currentLife < 0)
         {
+            Debug.Log("Has muerto");
             //Lose the game;
             ReloadScene();
         }
@@ -39,7 +42,8 @@ public class LifeManager : MonoBehaviour
 
     void UpdateDisplay()
     {
-        Debug.Log(currentLife);
+        Debug.Log("Life "+currentLife);
+        healthSlider.value = currentLife;
         //displayBalance.text = "Gold: " + currentBalance;
     }
 

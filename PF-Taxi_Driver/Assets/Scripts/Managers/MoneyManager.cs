@@ -39,7 +39,7 @@ public class MoneyManager : MonoBehaviour
 
     void UpdateDisplay()
     {
-        Debug.Log(currentBalance);
+        Debug.Log("Money: "+ currentBalance);
         //displayBalance.text = "Gold: " + currentBalance;
     }
 

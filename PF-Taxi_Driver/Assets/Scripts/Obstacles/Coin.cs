@@ -1,24 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : Obstacle
+public class Coin : MonoBehaviour
 {
+    //public bool followingTaxi;
+    //public bool solidObject;
+    [SerializeField] public int points;
+    [SerializeField] public float velocityMult;
+    [SerializeField] public float time;
 
-    public Coin() : base(false, true, -10, 0f, 30)
-    {
+    MoneyManager moneyManager;
+    LifeManager lifeManager;
 
-
-    }
-    // Start is called before the first frame update
     void Start()
     {
-        
+        moneyManager = FindObjectOfType<MoneyManager>();
+        lifeManager = FindObjectOfType<LifeManager>();
+        Debug.Log("OBSTACULO");
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log("El objeto que ha entrado es: " + other.gameObject.name);
+
+        CarController carController = other.GetComponent<CarController>();
+        if (carController != null)
+        {
+            Debug.Log("HA DADO AL OBSTACLE");
+            lifeManager.DecreaseLife(points);
+        }
     }
+
 }
