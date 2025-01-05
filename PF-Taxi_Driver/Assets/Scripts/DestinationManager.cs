@@ -43,20 +43,7 @@ public class DestinationManager : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("El objeto que ha entrado es: " + other.gameObject.name);
-        // Check if the object entering the trigger has the TaxiController component
-        CarController taxi = FindObjectOfType<CarController>();
-        if (taxi != null)
-        {
-            Debug.Log("Taxi has reached the destination!");
 
-            // Perform any action here, like generating a new destination
-            HandleTaxiArrival();
-        }
- 
-    }
 
     private void HandleTaxiArrival()
     {
