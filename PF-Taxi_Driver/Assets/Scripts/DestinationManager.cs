@@ -23,8 +23,7 @@ public class DestinationManager : MonoBehaviour
     void NewDestination()
 
     {
-        //GameObject? newDestination = null;
-        //while (newDestination != currentDestination) {
+
         
         int randomIndex = Random.Range(0, destinations.Count);
         currentDestination = destinations[randomIndex];

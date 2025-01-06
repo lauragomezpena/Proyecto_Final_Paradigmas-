@@ -5,9 +5,11 @@ using UnityEngine;
 public class ReachDestination : MonoBehaviour
 {
     MoneyManager moneyManager;
+    GameManager gameManager;    
     // Start is called before the first frame update
     void Start()
-    {     
+    {
+        gameManager = FindObjectOfType<GameManager>();
         moneyManager = FindObjectOfType<MoneyManager>();
     }
 
@@ -28,11 +30,13 @@ public class ReachDestination : MonoBehaviour
             Debug.Log("Taxi reached the destination!");
 
             moneyManager.Deposit(100);
-
+            gameManager.HandleTaxiArrival();
             // Notifica al DestinationManager destinationManager.HandleTaxiArrival();
 
             // Desactiva este destino gameObject.SetActive(false);
         }
 
     }
+
+
 }

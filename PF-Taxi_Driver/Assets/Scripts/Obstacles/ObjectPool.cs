@@ -30,7 +30,6 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             Vector3 position = GetRandomPointInMesh();
-            Debug.Log(position);
             pool[i] = Instantiate(obstaclePrefab, position, Quaternion.identity);
             pool[i].transform.parent = transform;
             pool[i].SetActive(false);
