@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 574013307243194130}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,8 +116,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1475272888050986121}
-  - component: {fileID: -5577568621963218586}
   - component: {fileID: 7214722773816908824}
+  - component: {fileID: -9091860958275525296}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -134,29 +134,13 @@ Transform:
   m_GameObject: {fileID: 7696463107231189107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.05}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1725011253020160395}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5577568621963218586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696463107231189107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf25780a341aaa747833808faa7f1fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeLoss: -5
-  money: 5
-  velocityMult: 0
-  time: 0
 --- !u!136 &7214722773816908824
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -179,4 +163,20 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: -4, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &-9091860958275525296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7696463107231189107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5a8afaccabbe045a0628da9bedb3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeLoss: 0
+  money: 5
+  velocityMult: 0
+  time: 0

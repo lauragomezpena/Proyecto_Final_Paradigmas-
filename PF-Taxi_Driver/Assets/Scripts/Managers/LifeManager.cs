@@ -23,13 +23,13 @@ public class LifeManager : MonoBehaviour
 
     public void IncreaseLife(int amount)
     {
-        currentLife += Mathf.Abs(amount);
+        currentLife += (amount);
         UpdateDisplay();
     }
 
     public void DecreaseLife(int amount)
     {
-        currentLife -= Mathf.Abs(amount);
+        currentLife -= (amount);
         UpdateDisplay();
 
         if (currentLife < 0)

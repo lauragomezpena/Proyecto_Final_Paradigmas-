@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
     {
         moneyManager = FindObjectOfType<MoneyManager>();
         lifeManager = FindObjectOfType<LifeManager>();
-        Debug.Log("OBSTACULO");
+
     }
 
      void OnTriggerEnter(Collider other)

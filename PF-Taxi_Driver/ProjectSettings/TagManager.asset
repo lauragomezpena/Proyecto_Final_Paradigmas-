@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Destination
   - Destinations
+  - RoadPieces
   layers:
   - Default
   - TransparentFX

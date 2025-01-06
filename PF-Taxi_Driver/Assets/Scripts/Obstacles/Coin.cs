@@ -4,7 +4,8 @@ public class Coin : MonoBehaviour
 {
     //public bool followingTaxi;
     //public bool solidObject;
-    [SerializeField] public int points;
+    [SerializeField] public int lifeLoss;
+    [SerializeField] public int money;
     [SerializeField] public float velocityMult;
     [SerializeField] public float time;
 
@@ -15,7 +16,7 @@ public class Coin : MonoBehaviour
     {
         moneyManager = FindObjectOfType<MoneyManager>();
         lifeManager = FindObjectOfType<LifeManager>();
-        Debug.Log("OBSTACULO");
+
     }
 
     void OnTriggerEnter(Collider other)
@@ -26,7 +27,9 @@ public class Coin : MonoBehaviour
         if (carController != null)
         {
             Debug.Log("HA DADO AL OBSTACLE");
-            lifeManager.DecreaseLife(points);
+            lifeManager.DecreaseLife(lifeLoss);
+            moneyManager.Deposit(money);
+            gameObject.SetActive(false);
         }
     }
 
