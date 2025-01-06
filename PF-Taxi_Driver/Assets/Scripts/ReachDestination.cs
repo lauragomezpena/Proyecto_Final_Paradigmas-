@@ -7,7 +7,8 @@ public class ReachDestination : MonoBehaviour
     MoneyManager moneyManager;
     // Start is called before the first frame update
     void Start()
-    {        moneyManager = FindObjectOfType<MoneyManager>();
+    {     
+        moneyManager = FindObjectOfType<MoneyManager>();
     }
 
     // Update is called once per frame

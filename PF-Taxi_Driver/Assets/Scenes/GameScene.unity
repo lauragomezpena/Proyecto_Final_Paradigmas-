@@ -44761,6 +44761,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100010, guid: fba5e236738a7c940b3a8d031c307794, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984597031}
+    - targetCorrespondingSourceObject: {fileID: 100010, guid: fba5e236738a7c940b3a8d031c307794, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1984597035}
   m_SourcePrefab: {fileID: 100100000, guid: fba5e236738a7c940b3a8d031c307794, type: 3}
 --- !u!1001 &944073330
 PrefabInstance:
@@ -55427,6 +55430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1138766444}
+  - component: {fileID: 1138766445}
   m_Layer: 0
   m_Name: Destinations
   m_TagString: Destinations
@@ -55459,6 +55463,20 @@ Transform:
   - {fileID: 818399394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1138766445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1138766443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31d3668fc6e6e824caccbc631a1468e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destinations: []
+  destinationMark: {fileID: 4647805134552771837, guid: 501f3d97042569c4c941248ddf707868, type: 3}
 --- !u!1001 &1138932639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57370,7 +57388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 5041127834365888283, guid: 2973257069a26684aa3f0f9c9ac2fa71, type: 3}
   roadPieces: []
-  poolSize: 20
+  poolSize: 30
 --- !u!1001 &1172964458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66588,7 +66606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1335523955
 Transform:
   m_ObjectHideFlags: 0
@@ -66632,7 +66650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 7392640249975429150, guid: 85cc175ea7ce11b4f9ef3e4149a1af28, type: 3}
   roadPieces: []
-  poolSize: 20
+  poolSize: 30
 --- !u!1001 &1335988252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95067,13 +95085,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668601628}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31d3668fc6e6e824caccbc631a1468e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destinations: []
   destinationMark: {fileID: 4647805134552771837, guid: 501f3d97042569c4c941248ddf707868, type: 3}
+--- !u!114 &1984597035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668601628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a09c143e39c264c9c4d3ade02446cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1985315128
 PrefabInstance:
   m_ObjectHideFlags: 0

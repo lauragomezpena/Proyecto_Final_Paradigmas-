@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] private List<GameObject> roadPieces;
-    [SerializeField] int poolSize = 5;
+    [SerializeField] int poolSize = 20;
     GameObject[] pool;
 
     void Awake()

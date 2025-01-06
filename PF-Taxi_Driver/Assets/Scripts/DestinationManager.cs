@@ -9,6 +9,7 @@ public class DestinationManager : MonoBehaviour
     private GameObject currentDestination;
     [SerializeField] GameObject destinationMark;
 
+
     private void OnEnable()
     {
         
@@ -55,6 +56,8 @@ public class DestinationManager : MonoBehaviour
     }
 
 
+
     
 
-    }
+
+}

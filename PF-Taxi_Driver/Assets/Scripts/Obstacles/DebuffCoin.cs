@@ -1,23 +1,36 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using UnityEngine;
 
-//public class DebuffCoin : Obstacle
-//{
-//    public DebuffCoin() : base(true, true, 0, 0.5f, 30)
-//    {
+public class DebuffCoin : MonoBehaviour
+{
+    //public bool followingTaxi;
+    //public bool solidObject;
+    [SerializeField] public int lifeLoss;
+    [SerializeField] public int money;
+    [SerializeField] public float velocityMult;
+    [SerializeField] public float time;
 
+    MoneyManager moneyManager;
+    LifeManager lifeManager;
 
-//    }
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-        
-//    }
+    void Start()
+    {
+        moneyManager = FindObjectOfType<MoneyManager>();
+        lifeManager = FindObjectOfType<LifeManager>();
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-        
-//    }
-//}
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("El objeto que ha entrado es: " + other.gameObject.name);
+
+        CarController carController = other.GetComponent<CarController>();
+        if (carController != null)
+        {
+            Debug.Log("HA DADO AL OBSTACLE");
+            lifeManager.DecreaseLife(lifeLoss);
+            moneyManager.Deposit(money);
+            gameObject.SetActive(false);
+        }
+    }
+
+}
