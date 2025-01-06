@@ -1,72 +1,73 @@
-using UnityEngine;
+//using UnityEngine;
 
-public class PoliceCarController : MonoBehaviour
-{
-    public Transform taxi;  // Reference to the taxi object
-    public float followSpeed = 15f;  // Speed at which the police car follows
-    public float captureDistance = 1f;  // Distance at which the police captures the taxi
-    public float speedLimit = 20f;  // Speed limit for the taxi
-    public float speedCheckInterval = 0.5f;  // Time between checking speed of the taxi
-    private Rigidbody taxiRB;  // Taxi's Rigidbody for speed calculations
-    private float timeSinceLastCheck = 0f;
+//public class PoliceCarController : MonoBehaviour
+//{
+//    public Transform taxi; // Referencia al taxi
+//    public float followDistance = 5f; // Distancia mínima antes de reducir velocidad
+//    public float stopDistance = 1.5f; // Distancia para capturar el taxi
+//    public float maxSpeed = 20f; // Velocidad máxima del police car
 
-    private void Start()
-    {
-        // Get the Rigidbody component from the taxi object
-        taxiRB = taxi.GetComponent<Rigidbody>();
+//    private CarController carController;
 
-        if (taxiRB == null)
-        {
-            Debug.LogError("Taxi Rigidbody not found! Ensure the Taxi has a Rigidbody component.");
-        }
-    }
+//    private void Start()
+//    {
+//        carController = GetComponent<CarController>();
+//        if (carController == null)
+//        {
+//            Debug.LogError("No se encontró el componente CarController en el PoliceCar.");
+//        }
+//    }
 
-    private void Update()
-    {
-        // Always follow the taxi for now to test movement
-        FollowTaxi();
-    }
+//    private void Update()
+//    {
+//        FollowTaxi();
+//    }
 
-    // Method to calculate taxi speed and check if it's speeding
-    private bool IsTaxiSpeeding()
-    {
-        if (taxiRB == null) return false;
+//    private void FollowTaxi()
+//    {
+//        if (taxi == null || carController == null) return;
 
-        // Speed is the magnitude of the Rigidbody's velocity
-        float taxiSpeed = taxiRB.velocity.magnitude;
-        Debug.Log($"Taxi Speed: {taxiSpeed} m/s");
+//        // Calcular dirección hacia el taxi
+//        Vector3 direction = (taxi.position - transform.position).normalized;
 
-        return taxiSpeed > speedLimit;
-    }
+//        // Calcular la distancia al taxi
+//        float distance = Vector3.Distance(transform.position, taxi.position);
 
-    // Method to make the police car follow the taxi
-    private void FollowTaxi()
-    {
-        // Get direction to follow the taxi
-        Vector3 direction = (taxi.position - transform.position).normalized;
-        float distance = Vector3.Distance(transform.position, taxi.position);
+//        // Ajustar velocidad y dirección según la distancia
+//        if (distance > stopDistance)
+//        {
+//            // Avanza hacia el taxi
+//            carController.gasInput = distance > followDistance ? 1f : 0.5f; // Acelera más lejos
+//            carController.steeringInput = CalculateSteeringInput(direction);
+//        }
+//        else
+//        {
+//            // Captura el taxi
+//            CaptureTaxi();
+//        }
+//    }
 
-        Debug.Log($"Direction to taxi: {direction}");
-        Debug.Log($"Distance to taxi: {distance}");
+//    private float CalculateSteeringInput(Vector3 direction)
+//    {
+//        // Convertir la dirección al espacio local del coche
+//        Vector3 localDirection = transform.InverseTransformDirection(direction);
 
-        // Keep following the taxi until close enough
-        if (distance > captureDistance)
-        {
-            // Move police car towards the taxi
-            transform.position += direction * followSpeed * Time.deltaTime;
-        }
-        else
-        {
-            CaptureTaxi();
-        }
-    }
+//        // Determinar el ángulo de giro según la dirección local
+//        float steering = Mathf.Clamp(localDirection.x, -1f, 1f);
+//        return steering;
+//    }
 
-    // Method to stop the taxi and end the game or journey when captured
-    private void CaptureTaxi()
-    {
-        Debug.Log("Police caught the taxi! Journey stopped.");
+//    private void CaptureTaxi()
+//    {
+//        Debug.Log("¡La policía capturó al taxi!");
+//        carController.gasInput = 0f; // Detener el coche
+//        carController.brakeInput = 1f;
 
-        // Logic to stop the taxi
-        taxiRB.velocity = Vector3.zero; // Stop the taxi immediately
-    }
-}
+//        // Opcional: lógica adicional para detener el taxi
+//        Rigidbody taxiRB = taxi.GetComponent<Rigidbody>();
+//        if (taxiRB != null)
+//        {
+//            taxiRB.velocity = Vector3.zero;
+//        }
+//    }
+//}
