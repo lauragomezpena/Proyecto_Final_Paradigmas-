@@ -3,29 +3,86 @@ using UnityEngine.AI;
 
 public class PoliceCarController : MonoBehaviour
 {
-    public Transform taxi;  // Referencia al taxi
-    private NavMeshAgent agent;  // Componente NavMeshAgent
-
+    public Transform taxi;  // Reference to the taxi
+    private NavMeshAgent agent;  // NavMeshAgent component
+    public float speedLimit = 15f;  // Speed limit that the taxi must exceed for the police car to start following it
+    private Rigidbody taxiRigidbody;  // Taxi's Rigidbody to check its speed
+    private bool isChasing = false;  // Flag to determine if the police car has started chasing the taxi
+    public float captureDistance = 5f; // Distance at which the police captures the taxi
+    GameManager gameManager;
     private void Start()
     {
-        // Obtener el componente NavMeshAgent
+        // Get the NavMeshAgent component
+        gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
-            Debug.LogError("El componente NavMeshAgent no se encuentra en el coche de policía.");
+            Debug.LogError("NavMeshAgent component not found on Police Car.");
+        }
+
+        // Get the taxi's Rigidbody component to track its speed
+        if (taxi != null)
+        {
+            taxiRigidbody = taxi.GetComponent<Rigidbody>();
+        }
+        else
+        {
+            Debug.LogError("Taxi not assigned.");
         }
     }
 
     private void Update()
     {
-        // Asegurarse de que el taxi esté asignado
-        if (taxi != null && agent != null)
+        // Ensure that the taxi and the NavMeshAgent are assigned
+        if (taxi != null && agent != null && taxiRigidbody != null)
         {
-            // Hacer que el coche de policía siga al taxi
-            agent.SetDestination(taxi.position);
+            float taxiSpeed = taxiRigidbody.velocity.magnitude;  // Speed in meters per second
+            // Debugging the taxi's speed
+            // Debug.Log("Taxi Speed: " + taxiSpeed.ToString("F2") + " m/s");
+
+            // Check if the taxi's speed exceeds the speed limit
+            if (taxiSpeed > speedLimit && !isChasing)
+            {
+                // If taxi exceeds speed limit, start chasing
+                isChasing = true;
+                Debug.Log("Police car starts chasing the taxi!");
+            }
+
+            // If the police car has started chasing, keep following the taxi
+            if (isChasing)
+            {
+                agent.SetDestination(taxi.position);
+
+                float distance = Vector3.Distance(transform.position, taxi.position);
+                Debug.Log(distance);
+                if (distance <= captureDistance)
+                {
+                    CaptureTaxi();
+                }
+            }
         }
     }
+
+    private void CaptureTaxi()
+    {
+        Debug.Log("¡La policía capturó al taxi!");
+
+        // Stop the police car
+        agent.isStopped = true;
+
+        // Optionally, stop the taxi as well (you can add your own logic here)
+        Rigidbody taxiRB = taxi.GetComponent<Rigidbody>();
+        if (taxiRB != null)
+        {
+            taxiRB.velocity = Vector3.zero;
+        }
+
+        // End the chase
+        isChasing = false;
+        gameManager.HandlePoliceCapture();
+    }
 }
+
 
 
 

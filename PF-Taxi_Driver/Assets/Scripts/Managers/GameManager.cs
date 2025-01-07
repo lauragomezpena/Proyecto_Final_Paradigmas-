@@ -60,8 +60,18 @@ public class GameManager : MonoBehaviour
     {
         // Lógica cuando el taxi llega al destino
         Debug.Log("Taxi reached the destination!");
+        Debug.Log(timer + " seconds left");
+        Debug.Log((Mathf.RoundToInt(timer)*10) + " coins by clients");
         gameState = GameState.Win;
         HandleWinState();
+    }
+
+    public void HandlePoliceCapture()
+    {
+        // Lógica cuando el taxi llega al destino
+        Debug.Log("Taxi has been captured");
+        gameState = GameState.Fail;
+        HandleFailState();
     }
 
     private void HandleWinState()
