@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     private bool gameInProgress = false;
     [SerializeField] TextMeshProUGUI timeText;
 
-    //[SerializeField] GameObject winPanel;  // Panel de victoria
+    [SerializeField] GameObject winPanel;  // Panel de victoria
     //[SerializeField] GameObject failPanel; // Panel de fallo
     //[SerializeField] GameObject playAgainButton; // Botón para jugar de nuevo
 
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         ShowTimer();    
 
         //// Inicializa la UI para jugar nuevamente
-        //winPanel.SetActive(false);
+        winPanel.SetActive(false);
         //failPanel.SetActive(false);
         //playAgainButton.SetActive(false);
     }
@@ -77,8 +77,8 @@ public class GameManager : MonoBehaviour
     private void HandleWinState()
     {
         gameInProgress = false;
-        PlayAgain();
-        //winPanel.SetActive(true); // Muestra el panel de victoria
+        //PlayAgain();
+        winPanel.SetActive(true); // Muestra el panel de victoria
         //playAgainButton.SetActive(true); // Muestra el botón de "Jugar de nuevo"
     }
 
@@ -95,6 +95,20 @@ public class GameManager : MonoBehaviour
         // Reinicia el juego: vuelve a cargar la escena actual
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void ExitGame()
+    {
+ 
+        Debug.Log("Exiting Game...");
+
+        #if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in the editor.
+        #else
+                Application.Quit(); // Exits the game in a build.
+        #endif
+                
+    }
+
 
     void ShowTimer()
     {

@@ -17,9 +17,7 @@ public class DestinationManager : MonoBehaviour
     }
     void NewDestination()
 
-    {
-
-        
+    {   
         int randomIndex = Random.Range(0, destinations.Count);
         currentDestination = destinations[randomIndex];
         currentDestination.gameObject.SetActive(true);

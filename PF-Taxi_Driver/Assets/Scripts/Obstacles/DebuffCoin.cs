@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DebuffCoin : Obstacle
 {
-
-
     void Awake()
     {
         solidObject = false;
