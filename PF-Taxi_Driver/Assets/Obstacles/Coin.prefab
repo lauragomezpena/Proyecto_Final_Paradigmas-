@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1475272888050986121}
   - component: {fileID: 7214722773816908824}
-  - component: {fileID: 8062320796964392728}
+  - component: {fileID: 2171532431356807528}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -164,7 +164,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8062320796964392728
+--- !u!114 &2171532431356807528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,12 +173,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7696463107231189107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf25780a341aaa747833808faa7f1fc2, type: 3}
+  m_Script: {fileID: 11500000, guid: cf5a8afaccabbe045a0628da9bedb3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingTaxi: 0
   solidObject: 0
   lifeLoss: 0
-  money: 5
+  money: 0
   velocityMult: 1
   time: 0

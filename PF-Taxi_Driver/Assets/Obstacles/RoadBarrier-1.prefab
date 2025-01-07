@@ -342,10 +342,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6668341407383740747}
   - component: {fileID: 7764485207103370967}
-  - component: {fileID: -3235700574063857234}
   - component: {fileID: 8683567764802799306}
   - component: {fileID: 3089409095706211898}
   - component: {fileID: 3366856935196489101}
+  - component: {fileID: 5158766646760108111}
   m_Layer: 0
   m_Name: RoadBarrier-1
   m_TagString: Untagged
@@ -393,24 +393,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1.7, z: 0.5}
   m_Center: {x: 0, y: 0.7, z: 0}
---- !u!114 &-3235700574063857234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7392640249975429150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf25780a341aaa747833808faa7f1fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followingTaxi: 0
-  solidObject: 1
-  lifeLoss: 10
-  money: 0
-  velocityMult: 0.9
-  time: 0
 --- !u!64 &8683567764802799306
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -476,3 +458,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.7, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &5158766646760108111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392640249975429150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4471670233750e443996f176674fdf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solidObject: 0
+  lifeLoss: 0
+  money: 0
+  velocityMult: 1
+  time: 0

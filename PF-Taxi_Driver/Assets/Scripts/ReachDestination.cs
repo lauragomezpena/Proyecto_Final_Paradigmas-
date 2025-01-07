@@ -6,14 +6,14 @@ public class ReachDestination : MonoBehaviour
 {
     MoneyManager moneyManager;
     GameManager gameManager;    
-    // Start is called before the first frame update
+
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         moneyManager = FindObjectOfType<MoneyManager>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
@@ -21,9 +21,7 @@ public class ReachDestination : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("El objeto que ha entrado es: " + other.gameObject.name);
-        // Check if the object entering the trigger has the TaxiController component
-        //CarController taxi = FindObjectOfType<CarController>();
+
         CarController carController = other.GetComponent<CarController>();
         if (carController != null) // Si no es null, es del tipo CarController
         {
@@ -31,9 +29,7 @@ public class ReachDestination : MonoBehaviour
 
             moneyManager.Deposit(100);
             gameManager.HandleTaxiArrival();
-            // Notifica al DestinationManager destinationManager.HandleTaxiArrival();
 
-            // Desactiva este destino gameObject.SetActive(false);
         }
 
     }

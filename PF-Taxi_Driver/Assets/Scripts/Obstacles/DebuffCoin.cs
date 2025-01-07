@@ -1,36 +1,19 @@
 using UnityEngine;
 
-public class DebuffCoin : MonoBehaviour
+public class DebuffCoin : Obstacle
 {
-    //public bool followingTaxi;
-    //public bool solidObject;
-    [SerializeField] public int lifeLoss;
-    [SerializeField] public int money;
-    [SerializeField] public float velocityMult;
-    [SerializeField] public float time;
 
-    MoneyManager moneyManager;
-    LifeManager lifeManager;
 
-    void Start()
+    void Awake()
     {
-        moneyManager = FindObjectOfType<MoneyManager>();
-        lifeManager = FindObjectOfType<LifeManager>();
+        solidObject = false;
+        lifeLoss = 5;
+        money = 0;
+        velocityMult = 0.8f;
+        time = 0;
 
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("El objeto que ha entrado es: " + other.gameObject.name);
 
-        CarController carController = other.GetComponent<CarController>();
-        if (carController != null)
-        {
-            Debug.Log("HA DADO AL OBSTACLE");
-            lifeManager.DecreaseLife(lifeLoss);
-            moneyManager.Deposit(money);
-            gameObject.SetActive(false);
-        }
-    }
 
 }

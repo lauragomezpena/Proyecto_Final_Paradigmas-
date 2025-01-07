@@ -80,8 +80,34 @@ PrefabInstance:
       propertyPath: velocityMult
       value: 0.8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2171532431356807528, guid: 6103e8aee8301454aa044169a3959a3c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7696463107231189107, guid: 6103e8aee8301454aa044169a3959a3c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2663565175729487805}
   m_SourcePrefab: {fileID: 100100000, guid: 6103e8aee8301454aa044169a3959a3c, type: 3}
+--- !u!1 &5041127834365888283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7696463107231189107, guid: 6103e8aee8301454aa044169a3959a3c, type: 3}
+  m_PrefabInstance: {fileID: 3403308881653043048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2663565175729487805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5041127834365888283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37bd8f4d4c36134ca9613a6e78245a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solidObject: 0
+  lifeLoss: 0
+  money: 0
+  velocityMult: 1
+  time: 0

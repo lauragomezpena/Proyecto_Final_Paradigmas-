@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
         PopulatePool();
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         ActivateAllObjects(); // Activate all objects in the pool
@@ -45,7 +45,6 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    // This method is now optional if no additional enabling logic is needed.
     void EnableObjectInPool()
     {
         for (int i = 0; i < pool.Length; i++)
@@ -94,27 +93,9 @@ public class ObjectPool : MonoBehaviour
         float randomZ = Random.Range(bounds.min.z, bounds.max.z);
 
 
-        // Asegúrate de que la altura (Y) sea correcta
-        //return new Vector3(randomX, bounds.center.y, randomZ);
         return new Vector3(randomX, 0, randomZ);
     }
 
-    //private void SpawnObstacle()
-    //{
-    //    if (roadPieces.Count == 0) return;
-
-    //    // Selecciona una pieza del camino al azar
-    //    int randomIndex = Random.Range(0, roadPieces.Count);
-    //    GameObject selectedPiece = roadPieces[randomIndex];
-
-    //    // Calcula una posición aleatoria dentro de los Bounds del MeshCollider
-    //    Vector3 randomPosition = GetRandomPointInMesh(selectedPiece);
-    //    Debug.Log(randomPosition);
-    //    // Genera el obstáculo en la posición aleatoria
-    //    GameObject newObstacle = Instantiate(obstaclePrefab, randomPosition, Quaternion.identity);
-    //    newObstacle.transform.parent = this.transform;
-
-    //}
 }
 
 

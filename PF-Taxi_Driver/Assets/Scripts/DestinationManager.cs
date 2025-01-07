@@ -9,11 +9,6 @@ public class DestinationManager : MonoBehaviour
     private GameObject currentDestination;
     [SerializeField] GameObject destinationMark;
 
-
-    private void OnEnable()
-    {
-        
-    }
     private void Start()
     {
 
@@ -47,16 +42,6 @@ public class DestinationManager : MonoBehaviour
     }
 
 
-    private void HandleTaxiArrival()
-    {
-        // Example action: Deactivate the destination or show a message
-        //gameObject.SetActive(false);
-        Debug.Log("Destination reached. Generating a new destination...");
-    }
-
-
-
-    
 
 
 }

@@ -25,7 +25,6 @@ public class CollisionManager : MonoBehaviour
     void CollisionObstacle(Obstacle obstacle)
     {
 
-        Debug.Log("HA DADO AL OBSTACLE");
         lifeManager.DecreaseLife(obstacle.lifeLoss);
         moneyManager.Deposit(obstacle.money);
         carController.ModifyVelocity(obstacle.velocityMult);
@@ -33,9 +32,10 @@ public class CollisionManager : MonoBehaviour
 
 
     }
+
+    // para colision con ConstructionFence
     void OnCollisionEnter(Collision other)
     {
-        // Check if the object has a ConstructionFence component
         Obstacle obstacle = other.gameObject.GetComponent<Obstacle>();
         if (obstacle != null)
         {
@@ -50,6 +50,7 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    // para colisión con monedas
     private void OnTriggerEnter(Collider other)
     {
         Obstacle obstacle = other.gameObject.GetComponent<Obstacle>();
@@ -60,7 +61,6 @@ public class CollisionManager : MonoBehaviour
             if (!obstacle.solidObject)
 
             {
-                Debug.Log(" MONEDA");
                 other.gameObject.SetActive(false);
 
             }
