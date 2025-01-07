@@ -113,6 +113,12 @@ public class CarController : MonoBehaviour
 
     }
 
+    public float GetSpeed()
+    {
+
+        return speed;
+    }
+
 }
 [System.Serializable]
 public class WheelColliders

@@ -10,6 +10,7 @@ public class PoliceCarController : MonoBehaviour
     private bool isChasing = false;  // Flag to determine if the police car has started chasing the taxi
     public float captureDistance = 5f; // Distance at which the police captures the taxi
     GameManager gameManager;
+    [SerializeField] Radar radar;
     private void Start()
     {
         // Get the NavMeshAgent component
@@ -41,7 +42,7 @@ public class PoliceCarController : MonoBehaviour
             // Debug.Log("Taxi Speed: " + taxiSpeed.ToString("F2") + " m/s");
 
             // Check if the taxi's speed exceeds the speed limit
-            if (taxiSpeed > speedLimit && !isChasing)
+            if (radar.TriggerRadar(taxi.GetComponent<CarController>()) && !isChasing)
             {
                 // If taxi exceeds speed limit, start chasing
                 isChasing = true;
