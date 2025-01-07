@@ -112,16 +112,7 @@ public class CarController : MonoBehaviour
 
 
     }
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    // Check if the object has a ConstructionFence component
-    //    Obstacle constructionFence = other.gameObject.GetComponent<Obstacle>();
-    //    if (constructionFence != null)
-    //    {
-    //        Debug.Log("Coche ha chocado con una valla de construcción.");
-    //        playerRB.velocity *= 0.8f; // Reduce the speed
-    //    }
-    //}
+
 }
 [System.Serializable]
 public class WheelColliders
