@@ -7,7 +7,7 @@ public class Radar : MonoBehaviour
 
 
     private float speed;
-    private float legalSpeed = 5f;
+    private float legalSpeed = f;
 
 
     public bool TriggerRadar(CarController vehicle)

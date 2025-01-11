@@ -50,7 +50,6 @@ public class LifeManager : MonoBehaviour
 
     void UpdateDisplay()
     {
-        Debug.Log("Life "+currentLife);
         healthSlider.value = currentLife;
 
     }

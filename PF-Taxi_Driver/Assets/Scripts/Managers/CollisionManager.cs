@@ -20,11 +20,6 @@ public class CollisionManager : MonoBehaviour
         lifeManager = FindObjectOfType<LifeManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
 
     void CollisionObstacle(Obstacle obstacle)

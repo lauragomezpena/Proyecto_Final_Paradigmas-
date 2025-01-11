@@ -22,7 +22,7 @@ public class DestinationManager : MonoBehaviour
         currentDestination = destinations[randomIndex];
         currentDestination.gameObject.SetActive(true);
         Instantiate(destinationMark, currentDestination.transform.position, Quaternion.identity);
-        Debug.Log("Destination determined");
+
     }
 
     void GenerateDestinations()

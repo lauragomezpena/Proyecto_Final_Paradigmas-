@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement; // Para reiniciar la escena
 
 // Los diferentes estados del juego
@@ -16,6 +17,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public GameState gameState;
+    MoneyManager moneyManager;  
+
     public float timeLimit =45f; 
     private float timer;
     private bool gameInProgress = false;
@@ -29,9 +32,11 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> onVictory; // evento para dar la propina al taxi
     public event Action onFinishRide; // evento para parar coches cuando termina un viaje
-
+    public event Action onLoose;
     private void Start()
     {
+
+        moneyManager = FindObjectOfType<MoneyManager>();
         // Inicializa el estado del juego
         gameState = GameState.Play;
         timer = timeLimit;
@@ -81,13 +86,11 @@ public class GameManager : MonoBehaviour
 
     public void HandleTaxiArrival()
     {
-        
         Debug.Log("Taxi reached the destination!");
 
         int tipAmount = (Mathf.RoundToInt(timer) * 10);
 
         onVictory?.Invoke(tipAmount);
-        Debug.Log($"Tip Received: ${tipAmount}");
         string text = $"You have receive a tip: ${tipAmount}";
         changeMoneytext(text);
 
@@ -96,7 +99,6 @@ public class GameManager : MonoBehaviour
 
     public void HandlePoliceCapture()
     {
-        // Lógica cuando el taxi llega al destino
         Debug.Log("Taxi has been captured");
         failSituation = "Taxi has been captured by the Police Car!";
         HandleFailState();
@@ -117,13 +119,13 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.Win;
         gameInProgress = false;
-      
-
+     
     }
 
 
     public void HandleFailState()
     {
+        onLoose.Invoke();
         gameState = GameState.Fail;
         gameInProgress = false;
         changeFailText();
@@ -131,15 +133,22 @@ public class GameManager : MonoBehaviour
 
     public void PlayAgain()
     {
-        // Reinicia el juego: vuelve a cargar la escena actual
+        // Aquí guardas el dinero actual antes de recargar la escena
+        int moneyBeforeReload = moneyManager.CurrentBalance;
+
+        // Reinicia la escena
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        // Después de recargar la escena, restauras el dinero (o cualquier otro dato)
+        moneyManager.currentBalance = moneyBeforeReload;
     }
+
 
     public void changeFailText()
 
     {
         TextMeshProUGUI[] texts = failPanel.GetComponentsInChildren<TextMeshProUGUI>();
-        failSituationText = texts[1]; // el segundo texto va a ser el modificado
+        failSituationText = texts[1]; // el segundo texto 
 
         failSituationText.text = failSituation;
     }
@@ -148,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     {
         TextMeshProUGUI[] texts = winPanel.GetComponentsInChildren<TextMeshProUGUI>();
-        TextMeshProUGUI moneyText = texts[1]; // el segundo texto va a ser el modificado
+        TextMeshProUGUI moneyText = texts[1]; // el segundo
 
         moneyText.text = text;
     }
@@ -159,13 +168,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Exiting Game...");
 
         #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in the editor.
+                    UnityEditor.EditorApplication.isPlaying = false; 
         #else
                 Application.Quit(); // Exits the game in a build.
         #endif
                 
     }
-
 
     public void ShowTimer()
     {

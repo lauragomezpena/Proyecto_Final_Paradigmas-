@@ -7,22 +7,24 @@ using TMPro;
 public class MoneyManager : MonoBehaviour
 {
     [SerializeField] int startingBalance = 0;
-    [SerializeField] int currentBalance;
+    [SerializeField] public int currentBalance=0 ;
 
     GameManager gameManager;
     public int CurrentBalance { get { return currentBalance; } }
 
-    //[SerializeField] TextMeshProUGUI displayBalance;
+    [SerializeField] TextMeshProUGUI displayBalance; // in win panel
+    [SerializeField] TextMeshProUGUI displayBalance2; // in fail panel 
 
     void Awake()
     {
+
         gameManager = FindObjectOfType<GameManager>();
-        currentBalance = startingBalance;
 
         gameManager.onVictory += Deposit;
+        gameManager.onLoose += UpdateDisplay2;
+
         UpdateDisplay();
     }
-
 
     public void Deposit(int amount)
     {
@@ -39,9 +41,11 @@ public class MoneyManager : MonoBehaviour
 
     void UpdateDisplay()
     {
-        Debug.Log("Money: "+ currentBalance);
-        //displayBalance.text = "Gold: " + currentBalance;
+        displayBalance.text = ""+ currentBalance;
     }
-
+    void UpdateDisplay2()
+    {
+        displayBalance2.text = "" + currentBalance;
+    }
 }
 
