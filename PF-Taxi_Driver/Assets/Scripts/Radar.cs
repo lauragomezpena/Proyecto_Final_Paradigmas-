@@ -12,22 +12,18 @@ public class Radar : MonoBehaviour
 
     public bool TriggerRadar(CarController vehicle)
     {
-
         speed = vehicle.GetSpeed();
-        string message;
+
         bool result;
 
         if (speed > legalSpeed)
         {
             result = true;
-            message = "Caught above legal speed.";
         }
         else
         {
             result = false;
-            message = "Driving legally.";
         }
-        //Debug.Log(message); 
         return (result);
     }
     

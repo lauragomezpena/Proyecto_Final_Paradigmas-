@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,10 @@ public class CollisionManager : MonoBehaviour
     CarController carController;
     MoneyManager moneyManager;
     LifeManager lifeManager;
+
+
+    public event Action<int> onCollision; // evento para dar la propina al taxi
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +30,7 @@ public class CollisionManager : MonoBehaviour
     void CollisionObstacle(Obstacle obstacle)
     {
 
-        lifeManager.DecreaseLife(obstacle.lifeLoss);
+        onCollision?.Invoke(obstacle.lifeLoss);
         moneyManager.Deposit(obstacle.money);
         carController.ModifyVelocity(obstacle.velocityMult);
 

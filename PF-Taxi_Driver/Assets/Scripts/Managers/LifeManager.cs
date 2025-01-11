@@ -10,15 +10,23 @@ public class LifeManager : MonoBehaviour
     int startingLife =100;
     int currentLife;
     [SerializeField] Slider healthSlider;
+
     GameManager gameManager;
+    CollisionManager collisionManager;
     public int CurrentLife { get { return currentLife; } }
 
 
 
     void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        collisionManager = FindObjectOfType<CollisionManager>();
+
         healthSlider.maxValue = startingLife;
         healthSlider.value = currentLife;
+
+        collisionManager.onCollision += DecreaseLife;
+
         currentLife = startingLife;
         UpdateDisplay();
     }

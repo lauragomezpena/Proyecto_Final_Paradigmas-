@@ -81,17 +81,15 @@ public class GameManager : MonoBehaviour
 
     public void HandleTaxiArrival()
     {
-        // Lógica cuando el taxi llega al destino
         
-
         Debug.Log("Taxi reached the destination!");
-        Debug.Log(timer + " seconds left");
-
 
         int tipAmount = (Mathf.RoundToInt(timer) * 10);
 
         onVictory?.Invoke(tipAmount);
         Debug.Log($"Tip Received: ${tipAmount}");
+        string text = $"You have receive a tip: ${tipAmount}";
+        changeMoneytext(text);
 
         HandleWinState();
     }
@@ -129,8 +127,6 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Fail;
         gameInProgress = false;
         changeFailText();
-   
-
     }
 
     public void PlayAgain()
@@ -146,6 +142,15 @@ public class GameManager : MonoBehaviour
         failSituationText = texts[1]; // el segundo texto va a ser el modificado
 
         failSituationText.text = failSituation;
+    }
+
+    public void changeMoneytext(string text)
+
+    {
+        TextMeshProUGUI[] texts = winPanel.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI moneyText = texts[1]; // el segundo texto va a ser el modificado
+
+        moneyText.text = text;
     }
 
     public void ExitGame()

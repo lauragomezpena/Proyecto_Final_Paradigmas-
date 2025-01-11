@@ -11,7 +11,4 @@ public class DebuffCoin : Obstacle
         time = 0;
 
     }
-
-
-
 }
