@@ -61,7 +61,6 @@ public class PoliceCarController : MonoBehaviour
 
     public void CaptureTaxi()
     {
-        Debug.Log("¡La policía capturó al taxi!");
         gameManager.HandlePoliceCapture();
     }
 

@@ -73,7 +73,7 @@ public class ObjectPool : MonoBehaviour
 
     {
 
-        // Selecciona una pieza del camino al azar
+
         int randomIndex = Random.Range(0, roadPieces.Count);
         GameObject roadPiece = roadPieces[randomIndex];
 
@@ -85,7 +85,7 @@ public class ObjectPool : MonoBehaviour
             return Vector3.zero;
         }
 
-        // Obtén los límites del MeshCollider
+        //  los límites del MeshCollider
         Bounds bounds = meshCollider.bounds;
 
         // Genera coordenadas aleatorias dentro de los límites
