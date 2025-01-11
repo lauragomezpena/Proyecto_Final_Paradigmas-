@@ -29,8 +29,6 @@ public class CollisionManager : MonoBehaviour
         moneyManager.Deposit(obstacle.money);
         carController.ModifyVelocity(obstacle.velocityMult);
 
-
-
     }
 
     // para colision con ConstructionFence
@@ -44,9 +42,9 @@ public class CollisionManager : MonoBehaviour
         }
 
         else
-        {// si se choca con otra cosa decrece la vida 5 
+        {
+            // si se choca con otra cosa decrece la vida 5 
             lifeManager.DecreaseLife(5);
-
         }
     }
 
@@ -62,7 +60,6 @@ public class CollisionManager : MonoBehaviour
 
             {
                 other.gameObject.SetActive(false);
-
             }
         }
     }

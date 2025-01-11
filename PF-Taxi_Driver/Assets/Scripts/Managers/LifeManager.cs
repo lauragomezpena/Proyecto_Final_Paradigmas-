@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
+
     [SerializeField] int startingLife =100;
     [SerializeField] int currentLife;
     [SerializeField] Slider healthSlider;
+    GameManager gameManager;
     public int CurrentLife { get { return currentLife; } }
 
-    //[SerializeField] TextMeshProUGUI displayBalance;
+
 
     void Awake()
     {
@@ -35,8 +37,7 @@ public class LifeManager : MonoBehaviour
         if (currentLife < 0)
         {
             Debug.Log("Has muerto");
-            //Lose the game;
-            ReloadScene();
+            gameManager.HandleDeath();
         }
     }
 
@@ -44,14 +45,9 @@ public class LifeManager : MonoBehaviour
     {
         Debug.Log("Life "+currentLife);
         healthSlider.value = currentLife;
-        //displayBalance.text = "Gold: " + currentBalance;
+
     }
 
-    void ReloadScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
-    }
 }
 
 

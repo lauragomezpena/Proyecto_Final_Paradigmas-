@@ -30,11 +30,6 @@ public class MoneyManager : MonoBehaviour
         currentBalance -= Mathf.Abs(amount);
         UpdateDisplay();
 
-        if (currentBalance < 0)
-        {
-            //Lose the game;
-            ReloadScene();
-        }
     }
 
     void UpdateDisplay()
@@ -43,10 +38,5 @@ public class MoneyManager : MonoBehaviour
         //displayBalance.text = "Gold: " + currentBalance;
     }
 
-    void ReloadScene()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
-    }
 }
 
