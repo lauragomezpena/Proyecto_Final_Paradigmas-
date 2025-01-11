@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class LifeManager : MonoBehaviour
 {
 
-    [SerializeField] int startingLife =100;
-    [SerializeField] int currentLife;
+    int startingLife =100;
+    int currentLife;
     [SerializeField] Slider healthSlider;
     GameManager gameManager;
     public int CurrentLife { get { return currentLife; } }
@@ -36,7 +36,6 @@ public class LifeManager : MonoBehaviour
 
         if (currentLife < 0)
         {
-            Debug.Log("Has muerto");
             gameManager.HandleDeath();
         }
     }

@@ -15,12 +15,15 @@ public class CarController : MonoBehaviour
     public float slipAngle;
     private float speed;
     public AnimationCurve steeringCurve;
-
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRB = gameObject.GetComponent<Rigidbody>();
+        gameManager = FindObjectOfType<GameManager>();
+
+        gameManager.onFinishRide += StopCarController;
         playerRB.centerOfMass = new Vector3(0, -0.5f, 0);
     }
 
@@ -117,6 +120,16 @@ public class CarController : MonoBehaviour
     {
 
         return speed;
+    }
+
+    public void StopCarController()
+    {
+
+
+        playerRB.velocity = Vector3.zero;
+
+        gasInput = 0;
+        brakeInput = 0;
     }
 
 }

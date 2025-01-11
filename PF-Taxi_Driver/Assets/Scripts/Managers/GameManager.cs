@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement; // Para reiniciar la escena
@@ -8,6 +9,7 @@ public enum GameState
     Play,  // El juego está en curso
     Win,   // El jugador ha ganado
     Fail   // El jugador ha fallado
+
 }
 
 
@@ -25,7 +27,9 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI failSituationText;    
     private string failSituation;   // Mensaje que indice porque has perido
 
-    //[SerializeField] GameObject playAgainButton; // Botón para jugar de nuevo
+    public event Action<int> onVictory; // evento para dar la propina al taxi
+    public event Action onFinishRide; // evento para parar coches cuando termina un viaje
+
     private void Start()
     {
         // Inicializa el estado del juego
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
         //// Inicializa la UI para jugar nuevamente
         winPanel.SetActive(false);
         failPanel.SetActive(false);
-        //playAgainButton.SetActive(false);
+
     }
 
     private void Update()
@@ -57,18 +61,38 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        else
+
+        {
+            onFinishRide?.Invoke();
+            if (gameState == GameState.Win)
+            {
+                winPanel.SetActive(true); // Muestra el panel de victoria
+            }
+            if (gameState == GameState.Fail)
+            {
+                failPanel.SetActive(true); // Muestra el panel de fallo
+            }
+
+        }
+
+
     }
 
     public void HandleTaxiArrival()
     {
         // Lógica cuando el taxi llega al destino
+        
+
         Debug.Log("Taxi reached the destination!");
         Debug.Log(timer + " seconds left");
 
-        Debug.Log((Mathf.RoundToInt(timer)*10) + " coins by clients");
+
         int tipAmount = (Mathf.RoundToInt(timer) * 10);
+
+        onVictory?.Invoke(tipAmount);
         Debug.Log($"Tip Received: ${tipAmount}");
-        gameState = GameState.Win;
+
         HandleWinState();
     }
 
@@ -93,9 +117,10 @@ public class GameManager : MonoBehaviour
     }
     public void HandleWinState()
     {
+        gameState = GameState.Win;
         gameInProgress = false;
-        winPanel.SetActive(true); // Muestra el panel de victoria
-        //playAgainButton.SetActive(true); // Muestra el botón de "Jugar de nuevo"
+      
+
     }
 
 
@@ -104,8 +129,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Fail;
         gameInProgress = false;
         changeFailText();
-        failPanel.SetActive(true); // Muestra el panel de fallo
-        //playAgainButton.SetActive(true); // Muestra el botón de "Jugar de nuevo"
+   
+
     }
 
     public void PlayAgain()

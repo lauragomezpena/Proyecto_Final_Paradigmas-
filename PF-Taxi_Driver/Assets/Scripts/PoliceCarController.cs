@@ -3,38 +3,37 @@ using UnityEngine.AI;
 
 public class PoliceCarController : MonoBehaviour
 {
+    private Rigidbody policeRB;
+
     public Transform taxi;  // Reference to the taxi
+    private CarController taxiController;
+
+    [SerializeField] Radar radar;
     private NavMeshAgent agent;  // NavMeshAgent component
     public float speedLimit = 15f;  // Speed limit that the taxi must exceed for the police car to start following it
-    private CarController taxiController;  // Taxi's Rigidbody to check its speed
     private bool isChasing = false;  // Flag to determine if the police car has started chasing the taxi
     public float captureDistance = 5f; // Distance at which the police captures the taxi
     GameManager gameManager;
-    [SerializeField] Radar radar;
+    
+
     private void Start()
     {
-        // Get the NavMeshAgent component
+        policeRB = gameObject.GetComponent<Rigidbody>();
         gameManager = FindObjectOfType<GameManager>();
         agent = GetComponent<NavMeshAgent>();
-        if (agent == null)
-        {
-            Debug.LogError("NavMeshAgent component not found on Police Car.");
-        }
 
-        // Get the taxi's Rigidbody component to track its speed
+        gameManager.onFinishRide += StopPoliceCar;
+
+
         if (taxi != null)
         {
             taxiController = taxi.GetComponent<CarController>();
         }
-        else
-        {
-            Debug.LogError("Taxi not assigned.");
-        }
+      
     }
 
     private void Update()
     {
-        // Ensure that the taxi and the NavMeshAgent are assigned
         if (taxi != null && agent != null && taxiController != null)
         {
 
@@ -62,23 +61,23 @@ public class PoliceCarController : MonoBehaviour
         }
     }
 
-    private void CaptureTaxi()
+    public void CaptureTaxi()
     {
         Debug.Log("¡La policía capturó al taxi!");
 
-        // Stop the police car
+
+        gameManager.HandlePoliceCapture();
+    }
+
+    public void StopPoliceCar()
+     {
         agent.isStopped = true;
 
-        // Optionally, stop the taxi as well (you can add your own logic here)
-        Rigidbody taxiRB = taxi.GetComponent<Rigidbody>();
-        if (taxiRB != null)
-        {
-            taxiRB.velocity = Vector3.zero;
-        }
+        policeRB.velocity = Vector3.zero;
 
-        // End the chase
+        agent.ResetPath();               
         isChasing = false;
-        gameManager.HandlePoliceCapture();
+
     }
 }
 

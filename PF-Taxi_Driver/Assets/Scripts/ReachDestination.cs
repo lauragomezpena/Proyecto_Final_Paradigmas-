@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ReachDestination : MonoBehaviour
 {
-    MoneyManager moneyManager;
+
     GameManager gameManager;    
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        moneyManager = FindObjectOfType<MoneyManager>();
+
     }
 
 
@@ -27,7 +27,7 @@ public class ReachDestination : MonoBehaviour
         {
             Debug.Log("Taxi reached the destination!");
 
-            moneyManager.Deposit(100);
+
             gameManager.HandleTaxiArrival();
 
         }
